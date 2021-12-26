@@ -1,0 +1,26 @@
+- name: NodeJS
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Install Node Version Manager
+      shell:
+        cmd: "curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash"
+        warn: false
+      args:
+        creates: ~/.nvm/install.sh
+
+    - name: Test for installed NodeJS LTS
+      shell: bash -ic "nvm which lts/*"
+      register: nvm_ls
+      ignore_errors: true
+      args:
+        creates: "{{ ansible_env.HOME }}/.nvm/alias"
+
+    - name: Install NodeJS LTS
+      command: bash -ic "nvm install lts/*"
+      when: nvm_ls.failed
+
+    - name: Use NodeJS LTS by default
+      command: bash -ic "nvm use --lts"
+      when: nvm_ls.failed

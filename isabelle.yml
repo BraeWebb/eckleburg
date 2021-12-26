@@ -1,0 +1,54 @@
+- name: Isabelle/HOL
+  hosts: localhost
+  connection: local
+
+  vars:
+    ansible_install: ~/.ansible/installs
+    isabelle_install: /usr/local/lib/isabelle
+    isabelle_version: 2021-1
+    binaries: /usr/local/bin
+
+  tasks:
+    - name: Install installation requirements
+      become: true
+      apt:
+        pkg:
+          - curl
+          - less
+          - libfontconfig1
+          - libgomp1
+          - libwww-perl
+          - rlwrap
+          - unzip
+          - texlive-latex-recommended
+          - texlive-latex-extra
+          - texlive-fonts-extra
+          - texlive-lang-all
+
+    - name: Create install directory
+      file:
+        path: "{{ ansible_install }}"
+        state: directory
+        mode: 0755
+
+    - name: Download Isabelle
+      get_url:
+        url: "https://isabelle.in.tum.de/website-Isabelle{{ isabelle_version }}/dist/Isabelle{{ isabelle_version }}_linux.tar.gz"
+        dest: "{{ ansible_install }}/isabelle{{ isabelle_version }}.tar.gz"
+
+    - name: Create Isabelle install directory
+      file:
+        path: "{{ isabelle_install }}"
+        state: directory
+        mode: 0755
+
+    - name: Unpack Isabelle
+      unarchive:
+        src: "{{ ansible_install }}/isabelle{{ isabelle_version }}.tar.gz"
+        dest: "{{ isabelle_install }}"
+
+    - name: Link executable
+      file:
+        src: "{{ isabelle_install }}/Isabelle{{ isabelle_version }}/bin/isabelle"
+        dest: "{{ binaries }}/isabelle"
+        state: link

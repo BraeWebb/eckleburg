@@ -1,0 +1,8 @@
+- name: Ansible
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Install ansible lint
+      pip:
+        name: ansible-lint[yamllint]

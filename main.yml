@@ -1,0 +1,10 @@
+- name: Braes Dev Machine
+  hosts: localhost
+  connection: local
+
+- import_playbook: ansible.yml
+
+- import_playbook: nodejs.yml
+- import_playbook: react.yml
+
+- import_playbook: isabelle.yml

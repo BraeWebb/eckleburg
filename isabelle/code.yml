@@ -1,0 +1,12 @@
+- name: Isabelle/HOL VSCode Extension
+  hosts: localhost
+  connection: local
+
+  vars:
+    isabelle_version: 2021-1
+
+  tasks:
+    - name: Install Isabelle/HOL VSCode Extension
+      command: code --install-extension makarius.isabelle{{ isabelle_version }}
+      args:
+        creates: ~/.vscode/extensions/makarius.isabelle{{ isabelle_version }}-*/package.json

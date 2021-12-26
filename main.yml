@@ -7,4 +7,5 @@
 - import_playbook: nodejs.yml
 - import_playbook: react.yml
 
-- import_playbook: isabelle.yml
+- import_playbook: isabelle/isabelle.yml
+- import_playbook: isabelle/code.yml

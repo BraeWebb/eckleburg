@@ -1,0 +1,21 @@
+- name: Terraform
+  hosts: localhost
+  connection: local
+
+  vars:
+    terraform_version: Terraform v1.1.2
+
+  tasks:
+    - name: Install hashicorp tap
+      homebrew_tap:
+        name: hashicorp/tap
+
+    - name: Install terraform
+      homebrew:
+        name: hashicorp/tap/terraform
+
+    - name: Version check
+      command: terraform -version
+      register: terraform
+      failed_when: 'terraform_version not in terraform.stdout'
+      changed_when: false

@@ -1,0 +1,24 @@
+---
+- name: Projects
+
+  when: projects is defined
+
+  block:
+    - name: Install git
+      import_tasks: tasks/common/git.yml
+
+    - name: Base directories
+      file:
+        path: "{{ item.base }}"
+        state: directory
+        mode: "0755"
+      with_items: "{{ projects }}"
+
+    - name: Checkout projects
+      git:
+        repo: "{{ item.0.source }}/{{ item.1 }}"
+        dest: "{{ item.0.base }}/{{ item.1 }}"
+        version: "HEAD"
+      with_subelements:
+        - "{{ projects }}"
+        - "repos"

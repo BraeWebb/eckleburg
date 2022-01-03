@@ -2,10 +2,65 @@
   hosts: localhost
   connection: local
 
-- import_playbook: ansible.yml
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/v16.13.1/bin:/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
 
-- import_playbook: nodejs.yml
-- import_playbook: react.yml
+  pre_tasks:
+    - name: Include vars
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/vars/*.yml"
+      tags: ['always']
 
-- import_playbook: isabelle/isabelle.yml
-- import_playbook: isabelle/code.yml
+    - name: Set PATH
+      include_tasks: tasks/common/paths.yml
+      tags: ['always']
+
+  tasks:
+    - import_tasks: tasks/common/brew.yml
+      tags: common
+
+    - import_tasks: tasks/files/projects.yml
+      tags: projects
+
+    - import_tasks: tasks/tools/latex.yml
+      tags:
+        - tools
+        - languages
+        - latex
+
+    - import_tasks: tasks/tools/isabelle.yml
+      tags:
+        - tools
+        - languages
+        - isabelle
+
+    - import_tasks: tasks/tools/act.yml
+      tags:
+        - tools
+        - devops
+        - act
+
+    - import_tasks: tasks/tools/ansible.yml
+      tags:
+        - tools
+        - devops
+        - ansible
+
+    - import_tasks: tasks/tools/terraform.yml
+      tags:
+        - tools
+        - devops
+        - terraform
+
+    - import_tasks: tasks/tools/nodejs.yml
+      tags:
+        - tools
+        - languages
+        - node
+
+    - import_tasks: tasks/tools/react.yml
+      tags:
+        - tools
+        - languages
+        - react

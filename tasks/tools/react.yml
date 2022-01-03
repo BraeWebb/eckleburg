@@ -1,8 +1,10 @@
+---
 - name: React
-  hosts: localhost
-  connection: local
 
-  tasks:
+  block:
+    - name: Install npm
+      import_tasks: nodejs.yml
+
     - name: Install create-react-app
       npm:
         name: create-react-app

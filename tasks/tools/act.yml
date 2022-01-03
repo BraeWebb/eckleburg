@@ -1,0 +1,29 @@
+---
+- name: Act for Github Actions
+
+  block:
+    - name: Install curl
+      import_tasks: tasks/common/curl.yml
+
+    - name: Create install directory
+      file:
+        path: "{{ ansible_install }}"
+        state: directory
+        mode: 0755
+
+    - name: Download act install script
+      get_url:
+        url: "https://raw.githubusercontent.com/nektos/act/master/install.sh"
+        dest: "{{ ansible_install }}/act_install.sh"
+
+    - name: Install act
+      script: "{{ ansible_install }}/act_install.sh -b {{ binaries }}"
+      become: true
+      args:
+        creates: "{{ binaries }}/act"
+
+    - name: Act version check
+      command: act --version
+      register: act
+      failed_when: 'act_version != act.stdout'
+      changed_when: false

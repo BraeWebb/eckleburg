@@ -1,0 +1,27 @@
+# projects:
+    # - base: ~/projects
+    #   source: git@github.com:BraeWebb
+    #   repos:
+    #       - software-architecture
+    #       - eckleburg
+    #       - cv
+    #       - adventofcode2021
+    #       - phd
+    #       - travel
+    #       - teachlearn
+    #       - director
+    #       - director-paper
+
+    # - base: ~/projects/csse1001
+    #   source: git@github.com:CSSE1001
+    #   repos:
+    #       - resources
+    #       - testrunner
+    #       - gradescope_integration
+    #       - queue
+
+    # - base: ~/projects
+    #   source: git@github.com:uqcyber
+    #   repos:
+    #       - veriopt-dev
+    #       - veriopt-releases

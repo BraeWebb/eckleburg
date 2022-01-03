@@ -1,0 +1,7 @@
+---
+- name: Install curl
+  apt:
+    pkg:
+      - curl
+    state: present
+    update_cache: true

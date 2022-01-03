@@ -1,0 +1,18 @@
+---
+- name: Git
+
+  block:
+    - name: Install git
+      become: true
+      apt:
+        name: git
+        state: present
+        # update_cache: true
+
+    - name: Git version check
+      command: git version
+      register: git
+      failed_when: 'git_version != git.stdout'
+      changed_when: false
+      args:
+        warn: false  # warning about git in cmd rather than module

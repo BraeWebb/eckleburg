@@ -1,0 +1,29 @@
+---
+- name: Latex
+
+  when: latex_version is defined
+
+  block:
+    - name: Install latex on linux
+      become: true
+      apt:
+        # update_cache: true
+        pkg:
+          - libfontconfig1
+          - texlive-latex-recommended
+          - texlive-latex-extra
+          - texlive-fonts-extra
+          - texlive-lang-all
+      when: ansible_distribution != 'MacOSX'
+
+    - name: Install latex on mac
+      homebrew_cask:
+        name: mactex
+        state: present
+      when: ansible_distribution == 'MacOSX'
+
+    - name: Latex version check
+      command: latex --version
+      register: latex
+      failed_when: 'latex_version not in latex.stdout'
+      changed_when: false

@@ -1,11 +1,10 @@
+---
 - name: Terraform
-  hosts: localhost
-  connection: local
 
-  vars:
-    terraform_version: Terraform v1.1.2
+  block:
+    - name: Install brew
+      import_tasks: tasks/common/brew.yml
 
-  tasks:
     - name: Install hashicorp tap
       homebrew_tap:
         name: hashicorp/tap

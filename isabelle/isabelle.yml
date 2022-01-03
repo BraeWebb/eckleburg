@@ -12,6 +12,7 @@
     - name: Install installation requirements
       become: true
       apt:
+        # update_cache: true
         pkg:
           - curl
           - less
@@ -52,3 +53,9 @@
         src: "{{ isabelle_install }}/Isabelle{{ isabelle_version }}/bin/isabelle"
         dest: "{{ binaries }}/isabelle"
         state: link
+
+    - name: Isabelle version check
+      command: isabelle version
+      register: isabelle
+      failed_when: 'isabelle_version not in isabelle.stdout'
+      changed_when: false

@@ -47,6 +47,11 @@
         - devops
         - ansible
 
+    - import_tasks: tasks/tools/cowsay.yml
+      tags:
+        - tools
+        - cowsay
+
     - import_tasks: tasks/tools/terraform.yml
       tags:
         - tools

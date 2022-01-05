@@ -1,7 +1,7 @@
 ---
 - name: Install curl
+  become: true
   apt:
     pkg:
       - curl
     state: present
-    update_cache: true

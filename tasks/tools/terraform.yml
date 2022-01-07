@@ -18,3 +18,8 @@
       register: terraform
       failed_when: 'terraform_version not in terraform.stdout'
       changed_when: false
+
+    - name: Install Terraform code extension
+      command: code --install-extension hashicorp.terraform@2.17.0
+      args:
+        creates: ~/.vscode/extensions/hashicorp.terraform-2.17.0/package.json

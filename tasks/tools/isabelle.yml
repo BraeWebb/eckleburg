@@ -22,17 +22,20 @@
         dest: "{{ ansible_install }}/isabelle{{ isabelle_version }}.tar.gz"
 
     - name: Create Isabelle install directory
+      become: true
       file:
         path: "{{ isabelle_install }}"
         state: directory
         mode: 0755
 
     - name: Unpack Isabelle
+      become: true
       unarchive:
         src: "{{ ansible_install }}/isabelle{{ isabelle_version }}.tar.gz"
         dest: "{{ isabelle_install }}"
 
     - name: Link executable
+      become: true
       file:
         src: "{{ isabelle_install }}/Isabelle{{ isabelle_version }}/bin/isabelle"
         dest: "{{ binaries }}/isabelle"

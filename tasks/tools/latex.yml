@@ -14,6 +14,7 @@
           - texlive-latex-extra
           - texlive-fonts-extra
           - texlive-lang-all
+          - texlive-bibtex-extra
       when: ansible_distribution != 'MacOSX'
 
     - name: Install latex on mac
@@ -27,3 +28,8 @@
       register: latex
       failed_when: 'latex_version not in latex.stdout'
       changed_when: false
+
+    - name: Bibtex Tidy
+      npm:
+        name: bibtex-tidy
+        global: true

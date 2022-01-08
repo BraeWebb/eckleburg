@@ -69,3 +69,15 @@
         - tools
         - languages
         - react
+
+    - import_tasks: tasks/config/wallpaper.yml
+      tags:
+        - config
+        - personal
+        - wallpaper
+
+    - import_tasks: tasks/config/workspaces.yml
+      tags:
+        - config
+        - personal
+        - workspaces

@@ -1,0 +1,20 @@
+---
+- name: Ubuntu configure workspaces
+
+  when: ansible_distribution != 'MacOSX'
+
+  block:
+    - name: Install python-psutil package
+      become: true
+      apt:
+        name: python-psutil
+
+    - name: Disable dynamic workspaces
+      dconf:
+        key: "/org/gnome/mutter/dynamic-workspaces"
+        value: "false"
+
+    - name: Set workspace count
+      dconf:
+        key: "/org/gnome/desktop/wm/preferences/num-workspaces"
+        value: "4"

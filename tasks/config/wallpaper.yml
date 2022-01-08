@@ -1,0 +1,31 @@
+---
+- name: Ubuntu configure wallpaper
+
+  when: ansible_distribution != 'MacOSX'
+
+  block:
+    - name: Install python-psutil package
+      become: true
+      apt:
+        name: python-psutil
+
+    - name: Download wallpaper
+      get_url:
+        url: https://512pixels.net/downloads/macos-wallpapers/10-15-Day.jpg
+        dest: "{{ ansible_install }}/wallpaper-day.jpg"
+        mode: '0777'
+
+    - name: Set GNOME wallpaper
+      dconf:
+        key: "/org/gnome/desktop/background/picture-uri"
+        value: "'file://{{ ansible_install | replace('~', ansible_env.HOME) }}/wallpaper-day.jpg'"
+
+    - name: Extend multiple displays
+      dconf:
+        key: "/org/gnome/desktop/background/picture-options"
+        value: "'wallpaper'"
+
+    - name: Disable icons
+      dconf:
+        key: "/org/gnome/desktop/background/show-desktop-icons"
+        value: "false"

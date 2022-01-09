@@ -33,6 +33,6 @@
 
     - name: Brew version check
       command: brew -v
-      register: brew
-      failed_when: 'brew_version not in brew.stdout'
+      register: version
+      failed_when: 'brew_version not in version.stdout'
       changed_when: false

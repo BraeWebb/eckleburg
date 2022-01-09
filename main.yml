@@ -23,6 +23,12 @@
     - import_tasks: tasks/files/projects.yml
       tags: projects
 
+    - name: Brew Install
+      include_tasks: tasks/common/brew_install.yml
+      tags:
+        - always
+      loop: "{{ brew | dict2items }}"
+
     - import_tasks: tasks/tools/latex.yml
       tags:
         - tools
@@ -46,16 +52,6 @@
         - tools
         - devops
         - ansible
-
-    - import_tasks: tasks/tools/cowsay.yml
-      tags:
-        - tools
-        - cowsay
-
-    - import_tasks: tasks/tools/k6.yml
-      tags:
-        - tools
-        - k6
 
     - import_tasks: tasks/tools/terraform.yml
       tags:

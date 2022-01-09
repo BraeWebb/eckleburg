@@ -1,0 +1,22 @@
+---
+- name: Install {{ item.key }}
+  tags:
+    - test
+    - "{{ item.key }}"
+
+  block:
+    - name: Brew install {{ item.key }}
+      homebrew:
+        name: "{{ item.key }}"
+
+    - name: "{{ item.key }} version"
+      debug:
+        msg: "{{ item.value.version }}"
+      when: item.value.version is defined
+
+    - name: "{{ item.key }} version check"
+      command: "{{ item.value.version_cmd | default(item.key + ' version') }}"
+      register: version
+      failed_when: 'item.value.version not in version.stdout'
+      changed_when: false
+      when: item.value.version is defined

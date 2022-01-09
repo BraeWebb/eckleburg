@@ -52,6 +52,11 @@
         - tools
         - cowsay
 
+    - import_tasks: tasks/tools/k6.yml
+      tags:
+        - tools
+        - k6
+
     - import_tasks: tasks/tools/terraform.yml
       tags:
         - tools

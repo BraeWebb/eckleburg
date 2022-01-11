@@ -1,4 +1,4 @@
-isabelle_version: '2021'
+isabelle_version: '2021-1'
 latex_version: pdfTeX 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian)
 act_version: act version 0.2.25
 terraform_version: Terraform v1.1.2

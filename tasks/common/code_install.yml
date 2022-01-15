@@ -1,0 +1,22 @@
+---
+- name: Install {{ item.key }}
+  tags:
+    - code-extensions
+    - "{{ item.key }}"
+
+  block:
+    - name: "Install {{ item.key }} code extension"
+      command: code --install-extension {{ item.key }}@{{ item.value.version }}
+      args:
+        creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{ item.key }}-{{ item.value.version }}/package.json"
+
+    - name: "{{ item.key }} version"
+      debug:
+        msg: "{{ item.value.version + '@' + item.value.version }}"
+
+    - name: "{{ item.key }} version check"
+      command: "code --list-extensions --show-versions"
+      register: version
+      failed_when: 'item.key + "@" + item.value.version not in version.stdout'
+      changed_when: false
+      when: item.value.version is defined

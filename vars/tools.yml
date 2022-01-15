@@ -8,3 +8,9 @@ brew:
   k6:
     version: k6 v0.35.0
   cowsay:
+
+code:
+  # appulate.filewatcher:
+  #   version: 1.0.2
+  ritwickdey.LiveServer:
+    version: 5.6.1

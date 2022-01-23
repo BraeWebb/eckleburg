@@ -1,0 +1,48 @@
+---
+- name: PlantUML
+
+  vars:
+    plant_install: /usr/local/lib/plantyml
+
+  when: plant_version is defined
+
+  block:
+    - name: Create install directory
+      file:
+        path: "{{ ansible_install }}"
+        state: directory
+        mode: 0755
+
+    - name: Download PlantUML
+      get_url:
+        url: "https://github.com/plantuml/plantuml/releases/download/v{{ plant_version }}/plantuml-{{ plant_version }}.jar"
+        dest: "{{ ansible_install }}/plantuml-{{ plant_version }}.jar"
+
+    - name: Create PlantUML install directory
+      become: true
+      file:
+        path: "{{ plant_install }}"
+        state: directory
+        mode: 0755
+
+    - name: Copy to install
+      become: true
+      copy:
+        src: "{{ ansible_install | replace('~', ansible_env.HOME) }}/plantuml-{{ plant_version }}.jar"
+        dest: "{{ plant_install }}"
+        mode: u=rwx,g=rx,o=rx
+
+    - name: Executable script
+      become: true
+      copy:
+        dest: "{{ binaries }}/plant"
+        content: |
+            #!/bin/bash
+            java -jar "{{ plant_install }}/plantuml-{{ plant_version }}.jar" ${@}
+        mode: 'u=rwx,g=rx,o=rx'
+
+    - name: PlantUML version check
+      command: plant -version
+      register: plant
+      failed_when: 'plant_version not in plant.stdout'
+      changed_when: false

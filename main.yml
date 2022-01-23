@@ -77,6 +77,11 @@
         - languages
         - react
 
+    - import_tasks: tasks/tools/plantuml.yml
+      tags:
+        - tools
+        - plant
+
     - import_tasks: tasks/tools/chrome.yml
       tags:
         - tools

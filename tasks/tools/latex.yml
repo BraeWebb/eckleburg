@@ -33,3 +33,16 @@
       npm:
         name: bibtex-tidy
         global: true
+
+    - name: Chktex
+      become: true
+      apt:
+        pkg:
+          - chktex
+      when: ansible_distribution != 'MacOSX'
+
+    - name: Chktex version check
+      command: chktex --version
+      register: chktex
+      failed_when: 'chktex_version not in chktex.stdout'
+      changed_when: false

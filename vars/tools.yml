@@ -16,3 +16,5 @@ code:
   #   version: 1.0.2
   ritwickdey.LiveServer:
     version: 5.6.1
+  redhat.ansible:
+    version: 0.7.1

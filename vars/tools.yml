@@ -11,6 +11,7 @@ brew:
     version: k6 v0.35.0
   cowsay:
   unison:
+    version_cmd: unison -version
     version: unison version 2.51.5
 
 code:

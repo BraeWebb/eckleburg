@@ -2,6 +2,9 @@
   hosts: localhost
   connection: local
 
+  vars:
+    is_mac: "{{ ansible_distribution == 'MacOSX' }}"
+
   environment:
     PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/v16.13.1/bin:/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
 
@@ -28,6 +31,10 @@
       tags:
         - always
       loop: "{{ brew | dict2items }}"
+
+    - name: Code Install
+      import_tasks: tasks/common/code.yml
+      tags: common
 
     - name: Code Extensions Install
       include_tasks: tasks/common/code_install.yml

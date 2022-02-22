@@ -37,9 +37,3 @@
       - name: Install Chrome (macOS)
         homebrew_cask:
           name: google-chrome
-
-      - name: Version check
-        include_role:
-          name: 'roles/version-check'
-        vars:
-          tool: google-chrome

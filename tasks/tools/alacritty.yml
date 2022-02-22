@@ -1,0 +1,35 @@
+---
+- name: Alacritty
+
+  block:
+  - name: Linux Install
+    when: not is_mac
+    block:
+      - name: Apt Package Repository
+        become: yes
+        apt_repository:
+          repo: ppa:mmstick76/alacritty
+
+      - name: Install alacritty (linux)
+        become: true
+        apt:
+          name: alacritty
+
+      - name: Version check
+        include_role:
+          name: 'roles/version-check'
+        vars:
+          tool: alacritty
+
+  - name: Mac Install
+    when: is_mac
+    block:
+      - name: Install alacritty (macOS)
+        homebrew_cask:
+          name: alacritty
+
+      - name: Version check
+        include_role:
+          name: 'roles/version-check'
+        vars:
+          tool: alacritty

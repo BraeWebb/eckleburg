@@ -13,9 +13,10 @@
   tasks:
     - name: VSCode Extensions
       include_tasks: tasks/common/code_install.yml
-      tags:
-        - always
       loop:
         - nhoizey.gremlins
         - GitHub.copilot
         - nobuhito.printcode
+
+    - name: Alacritty
+      include_tasks: tasks/tools/alacritty.yml

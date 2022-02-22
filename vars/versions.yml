@@ -61,3 +61,6 @@ GitHub.copilot:
   version: '1.7.5067'
 nobuhito.printcode:
   version: '3.0.0'
+alacritty:
+  version_cmd: alacritty --version
+  version: alacritty 0.9.0

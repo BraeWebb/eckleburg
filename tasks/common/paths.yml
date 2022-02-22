@@ -3,6 +3,12 @@
 
   tags: always
   block:
+    - name: zsh entrypoint
+      lineinfile:
+        path: ~/.zshrc
+        line: . ~/.bashrc
+        create: true
+
     - name: Add brew to PATH
       lineinfile:
         path: ~/.bashrc

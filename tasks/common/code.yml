@@ -32,9 +32,21 @@
         apt:
           package: code
 
-  # macOS
+      - name: Version check
+        include_role:
+          name: 'roles/version-check'
+        vars:
+          tool: code
 
   - name: Install VS Code (macOS)
-    homebrew_cask:
-      name: visual-studio-code
     when: is_mac
+    block:
+      - name: Install VS Code (macOS)
+        homebrew_cask:
+          name: visual-studio-code
+
+      - name: Version check
+        include_role:
+          name: 'roles/version-check'
+        vars:
+          tool: code

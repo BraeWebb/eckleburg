@@ -3,8 +3,9 @@ git:
   version: 'git version 2.25.1'
 brew:
   version_cmd: brew -v
-  version: Homebrew 3.3.15
+  version: Homebrew 3.3.16
 code:
+  version_cmd: code --version
   version: '1.64.2'
 unison:
   version_cmd: unison -version
@@ -35,7 +36,7 @@ act:
   version: act version 0.2.25
 terraform:
   version_cmd: terraform --version
-  version: Terraform v1.1.2
+  version: Terraform v1.1.6
 ansible-lint:
   version_cmd: ansible-lint --version
   version: ansible-lint 5.3.1
@@ -47,7 +48,7 @@ plant:
   version_cmd: plant -version
   version: '1.2022.0'
 k6:
-  version: k6 v0.35.0
+  version: k6 v0.36.0
 
 # Webdev profile
 ritwickdey.LiveServer:

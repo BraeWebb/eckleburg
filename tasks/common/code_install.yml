@@ -8,7 +8,7 @@
     - name: "Install {{ item }} extension"
       command: code --install-extension {{ item }}@{{ ext_version }}
       args:
-        creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{ item }}-{{ ext_version }}/package.json"
+        creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{ item | lower }}-{{ ext_version }}/package.json"
 
     - name: "{{ item }} version"
       debug:

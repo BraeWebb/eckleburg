@@ -20,6 +20,10 @@ latex:
 chktex:
   version_cmd: chktex --version
   version: '1.7.6'
+ban.spellright:
+  version: '3.0.60'
+James-Yu.latex-workshop:
+  version: '8.23.0'
 
 # Prover profile
 isabelle:
@@ -48,3 +52,11 @@ k6:
 # Webdev profile
 ritwickdey.LiveServer:
   version: 5.6.1
+
+# Personalization profile
+nhoizey.gremlins:
+  version: '0.26.0'
+GitHub.copilot:
+  version: '1.7.5067'
+nobuhito.printcode:
+  version: '3.0.0'

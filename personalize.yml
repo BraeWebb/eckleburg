@@ -1,0 +1,21 @@
+- import_playbook: core.yml
+
+- name: Personalization Profile
+  hosts: localhost
+  connection: local
+
+  vars:
+    is_mac: "{{ ansible_distribution == 'MacOSX' }}"
+
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/v16.13.1/bin:/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+
+  tasks:
+    - name: VSCode Extensions
+      include_tasks: tasks/common/code_install.yml
+      tags:
+        - always
+      loop:
+        - nhoizey.gremlins
+        - GitHub.copilot
+        - nobuhito.printcode

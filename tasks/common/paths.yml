@@ -4,16 +4,20 @@
   tags: always
   block:
     - name: .zshrc
-      ansible.builtin.file:
+      file:
         path: ~/.zshrc
         state: touch
-        mode: u=rwx
+        mode: u=rwx,g=,o=
+        modification_time: preserve
+        access_time: preserve
 
     - name: .bashrc
-      ansible.builtin.file:
+      file:
         path: ~/.bashrc
         state: touch
-        mode: u=rwx
+        mode: u=rwx,g=,o=
+        modification_time: preserve
+        access_time: preserve
 
     - name: zsh entrypoint
       lineinfile:

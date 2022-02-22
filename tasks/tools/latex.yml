@@ -1,7 +1,7 @@
 ---
 - name: Latex
 
-  when: latex_version is defined
+  when: latex.version is defined
 
   block:
     - name: Install latex on linux
@@ -15,13 +15,13 @@
           - texlive-fonts-extra
           - texlive-lang-all
           - texlive-bibtex-extra
-      when: ansible_distribution != 'MacOSX'
+      when: not is_mac
 
     - name: Install latex on mac
       homebrew_cask:
         name: mactex
         state: present
-      when: ansible_distribution == 'MacOSX'
+      when: is_mac
 
     - name: Version check
       include_role:
@@ -34,10 +34,11 @@
       apt:
         pkg:
           - chktex
-      when: ansible_distribution != 'MacOSX'
+      when: not is_mac
 
     - name: Version check
       include_role:
         name: 'roles/version-check'
       vars:
         tool: chktex
+      when: not is_mac

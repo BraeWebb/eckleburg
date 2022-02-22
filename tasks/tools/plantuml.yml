@@ -3,7 +3,7 @@
 
   vars:
     plant_install: /usr/local/lib/plantyml
-    plant_version: plant.version
+    plant_version: "{{ plant.version }}"
 
   block:
     - name: Download PlantUML

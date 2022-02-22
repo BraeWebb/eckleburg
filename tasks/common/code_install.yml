@@ -1,22 +1,21 @@
 ---
-- name: Install {{ item.key }}
-  tags:
-    - code-extensions
-    - "{{ item.key }}"
+- name: Install {{ item }} extension
+  
+  vars:
+    ext_version: "{{ lookup('vars', item).version }}"
 
   block:
-    - name: "Install {{ item.key }} code extension"
-      command: code --install-extension {{ item.key }}@{{ item.value.version }}
+    - name: "Install {{ item }} extension"
+      command: code --install-extension {{ item }}@{{ ext_version }}
       args:
-        creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{ item.key }}-{{ item.value.version }}/package.json"
+        creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{ item }}-{{ ext_version }}/package.json"
 
-    - name: "{{ item.key }} version"
+    - name: "{{ item }} version"
       debug:
-        msg: "{{ item.value.version + '@' + item.value.version }}"
+        msg: "{{ item + '@' + ext_version }}"
 
-    - name: "{{ item.key }} version check"
+    - name: "{{ item }} version check"
       command: "code --list-extensions --show-versions"
-      register: version
-      failed_when: 'item.key + "@" + item.value.version not in version.stdout'
+      register: actual_version
+      failed_when: 'item + "@" + ext_version not in actual_version.stdout'
       changed_when: false
-      when: item.value.version is defined

@@ -27,7 +27,8 @@
       include_tasks: tasks/common/code_install.yml
       tags:
         - always
-      loop: "{{ code | dict2items }}"
+      loop:
+        - redhat.ansible
 
     - import_tasks: tasks/tools/latex.yml
       tags:

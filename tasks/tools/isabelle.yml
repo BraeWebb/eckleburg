@@ -3,7 +3,7 @@
 
   vars:
     isabelle_install: /usr/local/lib/isabelle
-    isabelle_version: isabelle.version
+    isabelle_version: "{{ isabelle.version }}"
 
   block:
     - name: Download Isabelle

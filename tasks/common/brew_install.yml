@@ -10,7 +10,6 @@
         name: "{{ item }}"
 
     - name: Version check
-      when: "{{ item }} is defined"
       include_role:
         name: 'roles/version-check'
       vars:

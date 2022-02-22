@@ -22,8 +22,8 @@
       args:
         creates: "{{ binaries }}/act"
 
-    - name: Act version check
-      command: act --version
-      register: act
-      failed_when: 'act_version != act.stdout'
-      changed_when: false
+    - name: Version check
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: act

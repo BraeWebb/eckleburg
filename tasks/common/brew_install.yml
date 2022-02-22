@@ -14,9 +14,9 @@
         msg: "{{ item.value.version }}"
       when: item.value.version is defined
 
-    - name: "{{ item.key }} version check"
-      command: "{{ item.value.version_cmd | default(item.key + ' version') }}"
-      register: version
-      failed_when: 'item.value.version not in version.stdout'
-      changed_when: false
-      when: item.value.version is defined
+    - name: Version check
+      when: "{{ item.key }} is defined"
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: "{{ item.key }}"

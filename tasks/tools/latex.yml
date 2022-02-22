@@ -23,11 +23,11 @@
         state: present
       when: ansible_distribution == 'MacOSX'
 
-    - name: Latex version check
-      command: latex --version
-      register: latex
-      failed_when: 'latex_version not in latex.stdout'
-      changed_when: false
+    - name: Version check
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: latex
 
     - name: Bibtex Tidy
       npm:
@@ -41,8 +41,8 @@
           - chktex
       when: ansible_distribution != 'MacOSX'
 
-    - name: Chktex version check
-      command: chktex --version
-      register: chktex
-      failed_when: 'chktex_version not in chktex.stdout'
-      changed_when: false
+    - name: Version check
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: chktex

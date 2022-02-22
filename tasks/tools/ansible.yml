@@ -3,8 +3,8 @@
   pip:
     name: ansible-lint[yamllint]
 
-- name: Ansible version check
-  command: ansible-lint --version
-  register: ansible
-  failed_when: 'ansible_lint_version not in ansible.stdout'
-  changed_when: false
+- name: Version check
+  include_role:
+    name: 'roles/version-check'
+  vars:
+    tool: ansible-lint

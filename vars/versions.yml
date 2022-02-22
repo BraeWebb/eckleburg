@@ -12,8 +12,10 @@ unison:
 
 # Writing profile
 latex:
+  version_cmd: latex --version
   version: pdfTeX 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian)
 chktex:
+  version_cmd: chktex --version
   version: '1.7.6'
 
 # Prover profile
@@ -22,16 +24,20 @@ isabelle:
 
 # Devops profile
 act:
+  version_cmd: act --version
   version: act version 0.2.25
 terraform:
+  version_cmd: terraform --version
   version: Terraform v1.1.2
-ansible_lint:
+ansible-lint:
+  version_cmd: ansible-lint --version
   version: ansible-lint 5.3.1
 redhat.ansible:
   version: 0.7.1
 
 # Architect profile
 plant:
+  version_cmd: plant -version
   version: '1.2022.0'
 k6:
   version: k6 v0.35.0

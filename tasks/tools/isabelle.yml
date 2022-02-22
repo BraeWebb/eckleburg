@@ -3,8 +3,9 @@
 
   vars:
     isabelle_install: /usr/local/lib/isabelle
+    isabelle_version: isabelle.version
 
-  when: isabelle_version is defined
+  when: isabelle.version is defined
 
   block:
     - name: Install latex
@@ -41,8 +42,29 @@
         dest: "{{ binaries }}/isabelle"
         state: link
 
-    - name: Isabelle version check
-      command: isabelle version
-      register: isabelle
-      failed_when: 'isabelle_version not in isabelle.stdout'
-      changed_when: false
+    - name: Version check
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: isabelle
+
+    # - name: Download Isabelle linter
+    #   get_url:
+    #     url: "https://github.com/isabelle-prover/isabelle-linter/archive/refs/tags/Isabelle2021-1-v1.0.0.zip"
+    #     dest: "{{ ansible_install }}/isabelle-linter.zip"
+
+    # - name: Create Isabelle linter install directory
+    #   become: true
+    #   file:
+    #     path: "{{ isabelle_install }}/Isabelle{{ isabelle_version }}/isabelle-linter"
+    #     state: directory
+    #     mode: 0755
+
+    # - name: Unpack Isabelle linter
+    #   become: true
+    #   unarchive:
+    #     src: "{{ ansible_install }}/isabelle-linter.zip"
+    #     dest: "{{ isabelle_install }}/Isabelle{{ isabelle_version }}/isabelle-linter"
+
+    # - name: Install Isabelle linter
+    #   command: isabelle components -u "{{ isabelle_install }}/Isabelle{{ isabelle_version }}/isabelle-linter/isabelle-linter-Isabelle2021-1-v1.0.0"

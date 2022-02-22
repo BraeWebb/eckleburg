@@ -41,8 +41,8 @@
             java -jar "{{ plant_install }}/plantuml-{{ plant_version }}.jar" ${@}
         mode: 'u=rwx,g=rx,o=rx'
 
-    - name: PlantUML version check
-      command: plant -version
-      register: plant
-      failed_when: 'plant_version not in plant.stdout'
-      changed_when: false
+    - name: Version check
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: plant

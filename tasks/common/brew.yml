@@ -1,19 +1,6 @@
 ---
 - name: Homebrew
   block:
-    - name: Install dependencies
-      block:
-        - name: Install curl
-          import_tasks: curl.yml
-        - name: Install git
-          import_tasks: git.yml
-
-    - name: Create brew install directory
-      file:
-        path: "{{ ansible_install }}"
-        state: directory
-        mode: 0755
-
     - name: Download brew install script
       get_url:
         url: "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
@@ -23,13 +10,13 @@
       script: "{{ ansible_install }}/brew_install.sh"
       args:
         creates: /usr/local/bin/brew
-      when: ansible_distribution == 'MacOSX'
+      when: is_mac
 
     - name: Install brew on linux
       script: "{{ ansible_install }}/brew_install.sh"
       args:
         creates: /home/linuxbrew/.linuxbrew/bin/brew
-      when: ansible_distribution != 'MacOSX'
+      when: not is_mac
 
     - name: Version check
       include_role:

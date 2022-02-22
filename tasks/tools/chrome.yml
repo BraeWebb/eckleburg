@@ -19,3 +19,9 @@
         name: "google-chrome-stable"
         state: latest  # noqa package-latest putting faith in chrome updates not breaking
         update_cache: true
+
+    - name: Version check
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: google-chrome

@@ -5,18 +5,7 @@
     isabelle_install: /usr/local/lib/isabelle
     isabelle_version: isabelle.version
 
-  when: isabelle.version is defined
-
   block:
-    - name: Install latex
-      import_tasks: latex.yml
-
-    - name: Create install directory
-      file:
-        path: "{{ ansible_install }}"
-        state: directory
-        mode: 0755
-
     - name: Download Isabelle
       get_url:
         url: "https://isabelle.in.tum.de/website-Isabelle{{ isabelle_version }}/dist/Isabelle{{ isabelle_version }}_linux.tar.gz"

@@ -29,11 +29,6 @@
       vars:
         tool: latex
 
-    - name: Bibtex Tidy
-      npm:
-        name: bibtex-tidy
-        global: true
-
     - name: Chktex
       become: true
       apt:

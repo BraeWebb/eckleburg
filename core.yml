@@ -1,0 +1,39 @@
+- name: Core
+  hosts: localhost
+  connection: local
+
+  vars:
+    is_mac: "{{ ansible_distribution == 'MacOSX' }}"
+
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/v16.13.1/bin:/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+
+  pre_tasks:
+    - name: Include vars
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/vars/*.yml"
+      tags: ['always']
+
+    - name: Set PATH
+      include_tasks: tasks/common/paths.yml
+      tags: ['always']
+
+  tasks:
+    - name: Create brew install directory
+      file:
+        path: "{{ ansible_install }}"
+        state: directory
+        mode: 0755
+
+    - import_tasks: tasks/common/curl.yml
+
+    - import_tasks: tasks/common/git.yml
+
+    - import_tasks: tasks/common/brew.yml
+
+    - import_tasks: tasks/common/code.yml
+
+    - include_tasks: tasks/common/brew_install.yml
+      loop:
+        - unison

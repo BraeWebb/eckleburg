@@ -2,9 +2,6 @@
 - name: Terraform
 
   block:
-    - name: Install brew
-      import_tasks: tasks/common/brew.yml
-
     - name: Install hashicorp tap
       homebrew_tap:
         name: hashicorp/tap

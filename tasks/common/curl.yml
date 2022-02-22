@@ -1,6 +1,7 @@
 ---
 - name: Install curl
   become: true
+  when: not is_mac # assume xcode tools exist
   apt:
     pkg:
       - curl

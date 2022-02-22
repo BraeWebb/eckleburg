@@ -1,3 +1,5 @@
+- import_playbook: core.yml
+
 - name: Braes Dev Machine
   hosts: localhost
   connection: local
@@ -8,20 +10,7 @@
   environment:
     PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/v16.13.1/bin:/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
 
-  pre_tasks:
-    - name: Include vars
-      include_vars: "{{ item }}"
-      with_fileglob:
-        - "{{ playbook_dir }}/vars/*.yml"
-      tags: ['always']
-
-    - name: Set PATH
-      include_tasks: tasks/common/paths.yml
-      tags: ['always']
-
   tasks:
-    - import_tasks: tasks/common/brew.yml
-      tags: common
 
     - import_tasks: tasks/files/projects.yml
       tags: projects
@@ -30,11 +19,9 @@
       include_tasks: tasks/common/brew_install.yml
       tags:
         - always
-      loop: "{{ brew_tools | dict2items }}"
-
-    - name: Code Install
-      import_tasks: tasks/common/code.yml
-      tags: common
+      loop: 
+        - k6
+        - cowsay
 
     - name: Code Extensions Install
       include_tasks: tasks/common/code_install.yml
@@ -77,12 +64,6 @@
         - tools
         - languages
         - node
-
-    - import_tasks: tasks/tools/react.yml
-      tags:
-        - tools
-        - languages
-        - react
 
     - import_tasks: tasks/tools/plantuml.yml
       tags:

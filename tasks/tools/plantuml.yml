@@ -3,16 +3,9 @@
 
   vars:
     plant_install: /usr/local/lib/plantyml
-
-  when: plant_version is defined
+    plant_version: plant.version
 
   block:
-    - name: Create install directory
-      file:
-        path: "{{ ansible_install }}"
-        state: directory
-        mode: 0755
-
     - name: Download PlantUML
       get_url:
         url: "https://github.com/plantuml/plantuml/releases/download/v{{ plant_version }}/plantuml-{{ plant_version }}.jar"

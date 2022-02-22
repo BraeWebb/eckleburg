@@ -1,22 +1,17 @@
 ---
-- name: Install {{ item.key }}
+- name: Install {{ item }}
   tags:
     - test
-    - "{{ item.key }}"
+    - "{{ item }}"
 
   block:
-    - name: Brew install {{ item.key }}
+    - name: Brew install {{ item }}
       homebrew:
-        name: "{{ item.key }}"
-
-    - name: "{{ item.key }} version"
-      debug:
-        msg: "{{ item.value.version }}"
-      when: item.value.version is defined
+        name: "{{ item }}"
 
     - name: Version check
-      when: "{{ item.key }} is defined"
+      when: "{{ item }} is defined"
       include_role:
         name: 'roles/version-check'
       vars:
-        tool: "{{ item.key }}"
+        tool: "{{ item }}"

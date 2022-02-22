@@ -1,7 +1,7 @@
 ---
 - name: Ubuntu configure workspaces
 
-  when: ansible_distribution != 'MacOSX'
+  when: not is_mac
 
   block:
     - name: Install python-psutil package

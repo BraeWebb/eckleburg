@@ -8,13 +8,13 @@
         path: ~/.bashrc
         line: export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
       register: path
-      when: ansible_distribution != 'MacOSX'
+      when: not is_mac
 
     - name: Add texlive to PATH
       lineinfile:
         path: ~/.bashrc
         line: export PATH="/usr/share/texlive:$PATH"
-      when: ansible_distribution != 'MacOSX'
+      when: not is_mac
 
     - name: Add node to PATH
       blockinfile:

@@ -11,3 +11,8 @@ ansible-playbook -K main.yml
 
 Where possible brew has been used as Linuxbrew provides a cross-platform option.
 The notable exceptions are brew casks which don't work _well_ on linux, I fall back on apt in this case.
+
+## Requirements
+
+* Curl
+* Ansible

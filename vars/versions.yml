@@ -9,6 +9,9 @@ code:
 unison:
   version_cmd: unison -version
   version: unison version 2.51.5
+google-chrome:
+  version_cmd: google-chrome --version
+  version: Google Chrome 98.0.4758.102
 
 # Writing profile
 latex:

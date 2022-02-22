@@ -1,13 +1,13 @@
 ---
 - name: Git
 
+  when: not is_mac # assume xcode tools exist
   block:
     - name: Install git
       become: true
       apt:
         name: git
         state: present
-        # update_cache: true
 
     - name: Version check
       include_role:

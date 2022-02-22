@@ -2,15 +2,6 @@
 - name: Act for Github Actions
 
   block:
-    - name: Install curl
-      import_tasks: tasks/common/curl.yml
-
-    - name: Create install directory
-      file:
-        path: "{{ ansible_install }}"
-        state: directory
-        mode: 0755
-
     - name: Download act install script
       get_url:
         url: "https://raw.githubusercontent.com/nektos/act/master/install.sh"

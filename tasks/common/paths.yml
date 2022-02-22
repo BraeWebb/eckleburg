@@ -3,11 +3,22 @@
 
   tags: always
   block:
+    - name: .zshrc
+      ansible.builtin.file:
+        path: ~/.zshrc
+        state: touch
+        mode: u=rwx
+
+    - name: .bashrc
+      ansible.builtin.file:
+        path: ~/.bashrc
+        state: touch
+        mode: u=rwx
+
     - name: zsh entrypoint
       lineinfile:
         path: ~/.zshrc
         line: . ~/.bashrc
-        create: true
 
     - name: Add brew to PATH
       lineinfile:

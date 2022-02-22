@@ -6,7 +6,7 @@ ansible_lint_version: ansible-lint 5.3.1
 plant_version: '1.2022.0'
 chktex_version: '1.7.6'
 
-brew:
+brew_tools:
   k6:
     version: k6 v0.35.0
   cowsay:

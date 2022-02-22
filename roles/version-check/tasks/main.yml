@@ -1,0 +1,14 @@
+- name: "{{ tool }} expected version"
+  debug: 
+    msg: "{{ lookup('vars', tool) }}"
+
+- name: "{{ tool }} version check"
+  command: "{{ lookup('vars', tool).version_cmd if 'version_cmd' in lookup('vars', tool) else tool + ' version' }}"
+  register: "version"
+  when: "'version' in lookup('vars', tool)"
+  failed_when: "lookup('vars', tool).version not in version.stdout"
+  changed_when: false
+
+- name: "{{ tool }} actual version"
+  debug:
+    msg: "{{ version.stdout }}"

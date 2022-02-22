@@ -1,5 +1,2 @@
 binaries: /usr/local/bin
 ansible_install: ~/.ansible/installs
-
-git_version: 'git version 2.25.1'
-brew_version: Homebrew 3.3.15

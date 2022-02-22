@@ -31,8 +31,9 @@
         creates: /home/linuxbrew/.linuxbrew/bin/brew
       when: ansible_distribution != 'MacOSX'
 
-    - name: Brew version check
-      command: brew -v
-      register: version
-      failed_when: 'brew_version not in version.stdout'
-      changed_when: false
+    - name: Version check
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: brew
+

@@ -9,10 +9,8 @@
         state: present
         # update_cache: true
 
-    - name: Git version check
-      command: git version
-      register: git
-      failed_when: 'git_version != git.stdout'
-      changed_when: false
-      args:
-        warn: false  # warning about git in cmd rather than module
+    - name: Version check
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: git

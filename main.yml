@@ -30,7 +30,7 @@
       include_tasks: tasks/common/brew_install.yml
       tags:
         - always
-      loop: "{{ brew | dict2items }}"
+      loop: "{{ brew_tools | dict2items }}"
 
     - name: Code Install
       import_tasks: tasks/common/code.yml

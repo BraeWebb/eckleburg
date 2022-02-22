@@ -1,0 +1,41 @@
+# Core programs
+git:
+  version: 'git version 2.25.1'
+brew:
+  version_cmd: brew -v
+  version: Homebrew 3.3.15
+code:
+  version: '1.64.2'
+unison:
+  version_cmd: unison -version
+  version: unison version 2.51.5
+
+# Writing profile
+latex:
+  version: pdfTeX 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian)
+chktex:
+  version: '1.7.6'
+
+# Prover profile
+isabelle:
+  version: '2021-1'
+
+# Devops profile
+act:
+  version: act version 0.2.25
+terraform:
+  version: Terraform v1.1.2
+ansible_lint:
+  version: ansible-lint 5.3.1
+redhat.ansible:
+  version: 0.7.1
+
+# Architect profile
+plant:
+  version: '1.2022.0'
+k6:
+  version: k6 v0.35.0
+
+# Webdev profile
+ritwickdey.LiveServer:
+  version: 5.6.1

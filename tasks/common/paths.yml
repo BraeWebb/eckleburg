@@ -31,11 +31,17 @@
       register: path
       when: not is_mac
 
-    - name: Add texlive to PATH
+    - name: Add texlive to PATH (linux)
       lineinfile:
         path: ~/.bashrc
         line: export PATH="/usr/share/texlive:$PATH"
       when: not is_mac
+
+    - name: Add texlive to PATH (mac)
+      lineinfile:
+        path: ~/.bashrc
+        line: export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
+      when: is_mac
 
     - name: Add node to PATH
       blockinfile:

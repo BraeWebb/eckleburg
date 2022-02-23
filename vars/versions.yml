@@ -20,7 +20,7 @@ gh:
 # Writing profile
 latex:
   version_cmd: latex --version
-  version: pdfTeX 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian)
+  version: pdfTeX 3.14159265
 chktex:
   version_cmd: chktex --version
   version: '1.7.6'
@@ -90,4 +90,4 @@ httpie:
 
 alacritty:
   version_cmd: alacritty --version
-  version: alacritty 0.9.0
+  version: alacritty

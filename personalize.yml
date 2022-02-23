@@ -8,7 +8,7 @@
     is_mac: "{{ ansible_distribution == 'MacOSX' }}"
 
   environment:
-    PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/v16.13.1/bin:/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ ansible_env.HOME }}/.nvm/versions/node/v16.13.1/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/texlive/2021/bin/universal-darwin:{{ ansible_env.PATH }}"
 
   tasks:
     - name: VSCode Extensions
@@ -35,6 +35,7 @@
     - name: Delta git diff
       blockinfile:
         path: ~/.gitconfig
+        create: true
         block: |
           [core]
               pager = delta

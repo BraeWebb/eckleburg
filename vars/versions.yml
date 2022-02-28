@@ -1,6 +1,6 @@
 # Core programs
 git:
-  version: 'git version 2.25.1'
+  version: 'git version 2.30.1'
 brew:
   version_cmd: brew -v
   version: Homebrew 3.3.16
@@ -87,7 +87,11 @@ httpie:
   version_cmd: http --version
   version: '3.0.2'
 
-
 alacritty:
   version_cmd: alacritty --version
   version: alacritty
+
+
+# Software Architecture Profile
+jebbs.plantuml:
+  version: 2.17.2

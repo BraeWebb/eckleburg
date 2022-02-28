@@ -6,6 +6,10 @@
     plant_version: "{{ plant.version }}"
 
   block:
+    - name: Install graphviz
+      homebrew:
+        name: graphviz
+
     - name: Download PlantUML
       get_url:
         url: "https://github.com/plantuml/plantuml/releases/download/v{{ plant_version }}/plantuml-{{ plant_version }}.jar"

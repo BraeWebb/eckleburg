@@ -20,7 +20,7 @@
       tags: ['always']
 
   tasks:
-    - name: Create brew install directory
+    - name: Create ansible install directory
       file:
         path: "{{ ansible_install }}"
         state: directory

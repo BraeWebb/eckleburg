@@ -14,7 +14,8 @@
     - name: Docker
       import_tasks: tasks/tools/docker.yml
 
-    - name: Act
+    - name: Tools
       include_tasks: tasks/common/brew_install.yml
       loop:
         - act
+        - pyenv

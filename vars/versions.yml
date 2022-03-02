@@ -100,3 +100,6 @@ jebbs.plantuml:
 # Development Profile
 docker:
   version: Docker Desktop 4.5.0
+pyenv:
+  version_cmd: pyenv --version
+  version: pyenv 2.2.4

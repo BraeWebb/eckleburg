@@ -3,7 +3,7 @@ git:
   version: 'git version 2.30.1'
 brew:
   version_cmd: brew -v
-  version: Homebrew 3.3.16
+  version: Homebrew 3.4.0
 code:
   version_cmd: code --version
   version: '1.64.2'
@@ -95,3 +95,8 @@ alacritty:
 # Software Architecture Profile
 jebbs.plantuml:
   version: 2.17.2
+
+
+# Development Profile
+docker:
+  version: Docker Desktop 4.5.0

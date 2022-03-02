@@ -1,0 +1,16 @@
+---
+- name: Docker
+
+  block:
+  - name: Mac Install
+    when: is_mac
+    block:
+      - name: Install docker (macOS)
+        homebrew_cask:
+          name: docker
+
+      - name: Version check
+        include_role:
+          name: 'roles/version-check'
+        vars:
+          tool: docker

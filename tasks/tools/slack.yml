@@ -1,0 +1,10 @@
+---
+- name: Slack
+
+  block:
+  - name: Mac Install
+    when: is_mac
+    block:
+      - name: Install Slack (macOS)
+        homebrew_cask:
+          name: slack

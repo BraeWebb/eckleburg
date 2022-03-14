@@ -18,6 +18,9 @@
         - GitHub.copilot
         - nobuhito.printcode
 
+    - name: Slack
+      import_tasks: tasks/tools/slack.yml
+
     - name: Alacritty
       import_tasks: tasks/tools/alacritty.yml
 

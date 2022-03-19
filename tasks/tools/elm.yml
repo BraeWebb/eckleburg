@@ -12,6 +12,10 @@
       vars:
         tool: elm
 
+    - name: Install elm-format
+      homebrew:
+        name: elm-format
+
     - name: Install elm code extension
       include_tasks: tasks/common/code_install.yml
       tags:

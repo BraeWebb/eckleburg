@@ -1,0 +1,20 @@
+---
+- name: Elm
+
+  block:
+    - name: Install elm
+      homebrew:
+        name: elm
+
+    - name: Version check
+      include_role:
+        name: 'roles/version-check'
+      vars:
+        tool: elm
+
+    - name: Install elm code extension
+      include_tasks: tasks/common/code_install.yml
+      tags:
+        - always
+      loop:
+        - elmTooling.elm-ls-vscode

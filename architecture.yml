@@ -23,3 +23,5 @@
     - import_tasks: tasks/tools/plantuml.yml
 
     - import_tasks: tasks/tools/terraform.yml
+
+    - import_tasks: tasks/tools/elm.yml

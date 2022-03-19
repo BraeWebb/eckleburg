@@ -95,7 +95,10 @@ alacritty:
 # Software Architecture Profile
 jebbs.plantuml:
   version: 2.17.2
-
+terraform:
+  version: Terraform v1.1.7
+hashicorp.terraform:
+  version: '2.17.0'
 
 # Development Profile
 docker:

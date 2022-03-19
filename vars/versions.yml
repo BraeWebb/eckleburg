@@ -1,12 +1,12 @@
 # Core programs
 git:
-  version: 'git version 2.30.1'
+  version: 'git version 2.32.0'
 brew:
   version_cmd: brew -v
-  version: Homebrew 3.4.0
+  version: Homebrew 3.4.2
 code:
   version_cmd: code --version
-  version: '1.64.2'
+  version: '1.65.0'
 unison:
   version_cmd: unison -version
   version: unison version 2.51.5

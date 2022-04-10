@@ -3,7 +3,7 @@ git:
   version: 'git version 2.32.0'
 brew:
   version_cmd: brew -v
-  version: Homebrew 3.4.2
+  version: Homebrew 3.4.3
 code:
   version_cmd: code --version
   version: '1.65.0'
@@ -25,9 +25,9 @@ chktex:
   version_cmd: chktex --version
   version: '1.7.6'
 ban.spellright:
-  version: '3.0.60'
+  version: '3.0.62'
 James-Yu.latex-workshop:
-  version: '8.23.0'
+  version: '8.24.1'
 
 # Prover profile
 isabelle:
@@ -51,7 +51,7 @@ plant:
   version_cmd: plant -version
   version: '1.2022.0'
 k6:
-  version: k6 v0.36.0
+  version: k6 v0.37.0
 
 # Webdev profile
 ritwickdey.LiveServer:

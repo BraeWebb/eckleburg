@@ -25,3 +25,7 @@
     - import_tasks: tasks/tools/terraform.yml
 
     - import_tasks: tasks/tools/elm.yml
+
+    - include_tasks: tasks/common/brew_install.yml
+      loop:
+        - k6

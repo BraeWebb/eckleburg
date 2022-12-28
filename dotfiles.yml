@@ -8,6 +8,8 @@
     dotconfig: "{{ ansible_env.HOME }}/.config"
 
   tasks:
+    # WARNING: this will lose any unpushed commits
+    # Restore with `git reflog` followed by `git reset --hard [id]`
     - name: Clone dotfiles
       ansible.builtin.git:
         repo: git@github.com:BraeWebb/dotfiles.git

@@ -1,0 +1,22 @@
+- import_playbook: core.yml
+
+- name: dotfiles
+  hosts: localhost
+  connection: local
+
+  vars:
+    dotconfig: "{{ ansible_env.HOME }}/.config"
+
+  tasks:
+    - name: Clone dotfiles
+      ansible.builtin.git:
+        repo: git@github.com:BraeWebb/dotfiles.git
+        dest: "{{ dotconfig }}"
+
+    - name: Link files
+      ansible.builtin.file:
+        src: "{{ dotconfig }}/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/{{ item }}"
+        state: link
+      loop:
+        - .gitconfig

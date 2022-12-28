@@ -32,11 +32,3 @@
 
     - import_tasks: tasks/common/brew.yml
 
-    - import_tasks: tasks/common/code.yml
-
-    - import_tasks: tasks/tools/chrome.yml
-
-    - include_tasks: tasks/common/brew_install.yml
-      loop:
-        - unison
-        - gh

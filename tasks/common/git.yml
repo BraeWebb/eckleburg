@@ -9,14 +9,6 @@
         state: present
       when: not is_mac # assume xcode tools exist
 
-    - name: Setup git author
-      blockinfile:
-        path: ~/.gitconfig
-        block: |
-          [user]
-            name = Brae Webb
-            email = email@braewebb.com
-
     - name: Version check
       include_role:
         name: 'roles/version-check'

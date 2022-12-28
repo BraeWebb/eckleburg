@@ -21,7 +21,6 @@
         - always
       loop: 
         - k6
-        - cowsay
 
     - name: Code Extensions Install
       include_tasks: tasks/common/code_install.yml

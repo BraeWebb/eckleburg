@@ -1,0 +1,25 @@
+---
+- name: SDKMan
+
+  block:
+    - name: Install SDK Man
+      shell:
+        cmd: "curl -s 'https://get.sdkman.io/?rcupdate=false' | bash"
+        warn: false
+      args:
+        creates: ~/.sdkman
+
+    - name: Add sdkman to PATH
+      blockinfile:
+        path: ~/.bashrc
+        block: |
+          export SDKMAN_DIR="~/.sdkman"
+          [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+
+    # TODO: sdkman installs as a bash function which makes it hard to allow dynamic installation
+    - name: Install stable java
+      command: sdk install java
+
+    # - name: Use NodeJS LTS by default
+    #   command: bash -ic "nvm use --lts"
+    #   when: nvm_ls.failed

@@ -54,3 +54,9 @@
 
           [diff]
               colorMoved = default
+
+    - name: Neovim
+      include_tasks: tasks/common/brew_install.yml
+      loop:
+        - neovim
+        - yabai

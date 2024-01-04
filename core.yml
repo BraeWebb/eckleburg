@@ -15,10 +15,6 @@
         - "{{ playbook_dir }}/vars/*.yml"
       tags: ['always']
 
-    - name: Set PATH
-      include_tasks: tasks/common/paths.yml
-      tags: ['always']
-
   tasks:
     - name: Create ansible install directory
       file:

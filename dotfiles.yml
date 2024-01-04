@@ -22,3 +22,7 @@
         state: link
       loop:
         - .gitconfig
+        - .bashrc
+        - .zshrc
+        - .ssh/config
+        - .yabairc
